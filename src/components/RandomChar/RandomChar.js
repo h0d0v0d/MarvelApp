@@ -75,7 +75,7 @@ class RandomChar extends Component {
                     </div>
                     <div className="randomchar-static">
                         <p className="randomchar-title">
-                            Random character for today!
+                            Random character for today!!
                             <br/>
                             Do you want to get to know him better?
                         </p>
