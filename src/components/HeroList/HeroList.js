@@ -16,7 +16,7 @@ class HeroList extends Component {
         loading: true,
         itemLoading: false,
         error: false,
-        offset: 1200,
+        offset: 1300,
         activeId: null
         
     }
