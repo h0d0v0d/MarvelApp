@@ -1,0 +1,24 @@
+.app{
+    height: 5000px;
+}
+
+.main-wrapper{
+    width: 1100px;
+    min-height: 1200px;
+    margin: 0 auto;
+
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .card-button-wrapper{
+        height: auto;
+    }
+
+    .main-decor-img{
+        position: absolute;
+        left: 918px;
+        top: 1210px;
+    }
+}
