@@ -2,64 +2,53 @@ import Header from "../Header/Header";
 import RandomChar from "../RandomChar/RandomChar";
 import HeroList from "../HeroList/HeroList";
 import MainCard from "../MainCard/MainCard";
-import { Component } from "react";
+import { useState } from "react";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 import './App.scss'
 
 import decorImg from '../../resources/img/vision.png'
 
-class App extends Component{
+function App(){
 
-    state = { 
-        mainCardId: null,
-        page: 'characters'
-    }
+    const [mainCardId, setMainCard] = useState(null)
+    const [page, setPage] = useState('characters')
 
-    onChangeMainCard = async (mainCardId) => {
-        await this.setState({mainCardId})
+    const onChangeMainCard = (mainCardId) => { 
+        setMainCard(mainCardId)
     } 
 
-    showComics = () => {
-        this.setState({page: 'comics'})
-    }
-
-    showCharacters = () => {
-        this.setState({page: 'characters'})
+    const showOtherPage = (page) => {
+        setPage(page)
     }
     
-    render() {
-        return (
-            <div className="app">
-                <Header showComics={this.showComics}
-                        showCharacters={this.showCharacters}/>
-                {
-                    this.state.page === 'characters' ? 
-                    <Сharacters onChangeMainCard={this.onChangeMainCard} 
-                             mainCardId={this.state.mainCardId}/> :
-                    null
-                }
-            </div>
-        )
-    } 
+    return (
+        <div className="app">
+            <Header showOtherPage={showOtherPage}/>
+            {
+                page === 'characters' ? 
+                <Сharacters onChangeMainCard={onChangeMainCard} 
+                            mainCardId={mainCardId}/> :
+                null
+            }
+        </div>
+    )
+    
 }
 
-class Сharacters extends Component{
-    render() {
-        const {onChangeMainCard, mainCardId} = this.props
+const Сharacters = ({onChangeMainCard, mainCardId}) => { 
         return (
             <>
             <RandomChar/>
                 <div className="main-wrapper">
                     <HeroList onChangeMainCard={onChangeMainCard}/>
-                    <ErrorBoundary>
+                    <ErrorBoundary> 
                         <MainCard mainCardId={mainCardId}/>
                     </ErrorBoundary>
                     <img src={decorImg} alt="" className="main-decor-img" />
                 </div>
             </>
         )
-    }
 }
 
 export default App;

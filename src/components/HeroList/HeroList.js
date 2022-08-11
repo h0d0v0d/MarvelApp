@@ -1,110 +1,84 @@
-import { Component } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 
 import MarvelService from '../../services/MarvelServices'
 import Spinner from '../Spinner/Spinner'
 import Error from '../Error/Error'
 
-
 import './HeroList.scss'
 
+function HeroList ({onChangeMainCard}){
 
-class HeroList extends Component {
+    const [listData, setListData] = useState([])
+    const [loading, setLoading] = useState({loading: true, itemLoading: false, error: false})
+    const [offset, setOffset] = useState(1300)
+    const [activeId, setActiveId] = useState(null)
 
-    state = {
-        listData: [],
-        loading: true,
-        itemLoading: false,
-        error: false,
-        offset: 1300,
-        activeId: null
-        
-    }
+    const marvelservice = new MarvelService
 
-    marvelservice = new MarvelService
-
-    onRequest = (offset) => {
-        this.onCharListLoading()
-        this.marvelservice
+    const onRequest = (offset) => {
+        onCharListLoading()
+        marvelservice
         .getAllCharacters(offset)
-        .then(this.upperListData)
-        .catch(this.showError)
+        .then(upperListData)
+        .catch(showError)
     }
 
-    onCharListLoading = () => {
-        this.setState({
-            itemLoading: true
-        })
+    const onCharListLoading = () => {
+        setLoading({loading: true, itemLoading: true, error: false})
     }
 
-    onChangeMainCard = (id) => {
-        this.props.onChangeMainCard(id)
-        this.setState({
-            activeId: id
-        })
+    const onActiveMainCard = (id) => {
+        onChangeMainCard(id)
+        setActiveId(id)
     }
 
-    upperListData = (newListData) => {
-        this.setState(({listData, offset}) => ({
-            listData: [...listData, ...newListData],
-            loading: false,
-            itemLoading: false,
-            offset: offset + 9
-        }))
-
-        if (newListData.length < 9) {
-            this.setState({charEnded: true})
-        }
+    const upperListData = (newListData) => {
+        setListData(listData => [...listData, ...newListData])
+        setLoading({loading: false, itemLoading: false, error: false})
+        setOffset(offset => offset + 9)
     }
 
-    showError = (error) => {
-        this.setState({
-            error: true,
-            loading: false,
-            itemLoading: false,
-        })
+    const showError = (error) => {
+        setLoading({loading: false, itemLoading: false, error: true})
         console.log(error)
     }
 
-    componentDidMount() {
-        this.onRequest()
-    }
+    useEffect(() => {
+        onRequest()
+    }, [])
 
-
-    render() {
-        const {listData, loading, itemLoading, error, offset, activeId} = this.state
- 
-        const cards = listData.map((i) => {
-            const {id, thumbnail, name} = i 
-            let clazz = activeId === id ? 'hero-card active' : 'hero-card'
-            return (
-                <li key={id} className={clazz} onClick={() => {this.onChangeMainCard(id)}}>
-                        <div className="card-img-wrapper">
-                            <img src={thumbnail} alt="img" />
-                        </div>
-                        <p>{name}</p>
-                </li> 
-            )
-        })
-        const load = loading ? <Spinner/> : null
-        const message = offset >= 1562 ? <p>Героина больше нет</p> : null
-
-        return(
-            <div className="hero-list">
-                <ul className="card-wrapper"> 
-                    {cards}
-                </ul> 
-                {error && !loading ? <Error/> : load}
-                {message}
-                <button href="" className="button button__long button__main" 
-                                onClick={() => {this.onRequest(offset)}} 
-                                disabled={itemLoading}
-                                style={{'display': offset >= 1562 ? 'none' : 'block'}} >  
-                    <div className="inner">More</div>
-                </button> 
-            </div>
+    const cards = listData.map((i) => {
+        const {id, thumbnail, name} = i 
+        let clazz = activeId === id ? 'hero-card active' : 'hero-card'
+        return (
+            <li key={id} className={clazz} onClick={() => {onActiveMainCard(id)}}>
+                    <div className="card-img-wrapper">
+                        <img src={thumbnail} alt="img" />
+                    </div>
+                    <p>{name}</p>
+            </li> 
         )
-    }
+    })
+    const load = loading.loading ? <Spinner/> : null
+    const message = offset >= 1562 ? <p>Героина больше нет</p> : null
+
+    return(
+        <div className="hero-list">
+            <ul className="card-wrapper"> 
+                {cards}
+            </ul> 
+            {loading.error ? <Error/> : load}
+            {message}
+            <button href="" className="button button__long button__main" 
+                            onClick={() => {onRequest(offset)}} 
+                            disabled={loading.itemLoading}
+                            style={{'display': offset >= 1562 ? 'none' : 'block'}} >  
+                <div className="inner">More</div>
+            </button> 
+        </div>
+    )
+    
 } 
 
 export default HeroList
