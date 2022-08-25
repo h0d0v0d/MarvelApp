@@ -1,0 +1,25 @@
+.coimcs-banner{
+    min-height: 100px;
+    max-width: 1100px;
+    margin: 0 auto 45px auto;
+    display: flex;
+    background-color: #232222;
+    box-sizing: border-box;
+    border: solid 0.5px black;
+
+    .avengers{
+        margin: 0 83px 0 45px ;
+    }
+
+    .comics-banner-title{
+        width: 235px;
+        height: 64px;
+        font-family: 'Roboto Condensed';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        color: #FFFFFF;
+        margin: 18px 427px 0 0;
+    }
+}

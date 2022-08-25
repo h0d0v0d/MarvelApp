@@ -1,122 +1,101 @@
 .randomchar-wrapper{
     max-width: 1100px;
     height: auto;
-
     margin: 50px auto;
-}
 
-.randomchar {
-    max-width: 1100px;
-    height: 250px;
+    .randomchar {
+        max-width: 1100px;
+        height: 250px;
+        display:flex;
+        margin-top: 50px;
 
-    display:flex;
-        
-    margin-top: 50px;
-}
+        .randomchar-block{
+            width: 550px;
+            height: 250px;
+            padding: 35px 35px 35px 40px;
+            display: flex;
+            position: relative;
+            background: #FFFFFF;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
 
-.randomchar-block{
-    width: 550px;
-    height: 250px;
+            .randomchar-img {
+                max-width: 180px;
+                max-height: 180px;
+                margin-right: 30px;
+            }
+            .randomchar-name{
+                margin-bottom: 10px;
+                font-family: 'Roboto Condensed';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 26px;
+                color: #000000;
+            }
+            .randomchar-descr{
+                margin-bottom: 16px ;
+                box-sizing:content-box;
+                font-family: 'Roboto Condensed';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 18px;
+                color: black;
+            }
+            .button__main{
+                position: absolute;
+                left: 250px;
+                bottom: 35px
+            }
+            .button__secondary{
+                position: absolute;
+                left: 381px;
+                bottom: 35px
+            }
+        }
 
-    padding: 35px 35px 35px 40px;
+        .randomchar-static{
+            width: 550px;
+            height: 250px;
+            position: relative;
+            padding: 35px 0 0 40px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+            background: #232222;
 
-    display: flex;
-    position: relative;
-
-    background: #FFFFFF;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
-
-    .randomchar-img {
-        max-width: 180px;
-        max-height: 180px;
-
-        margin-right: 30px;
-    }
-
-    .randomchar-name{
-        margin-bottom: 10px;
-
-        font-family: 'Roboto Condensed';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 22px;
-        line-height: 26px;
-        color: #000000;
-    }
-
-    .randomchar-descr{
-        margin-bottom: 16px ;
-
-        box-sizing:content-box;
-
-        font-family: 'Roboto Condensed';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
-        color: black;
-    }
-
-    .button__main{
-
-
-        position: absolute;
-        left: 250px;
-        bottom: 35px
-    }
-
-    .button__secondary{
-
-
-        position: absolute;
-        left: 381px;
-        bottom: 35px
-    }
-}
-
-.randomchar-static{
-    width: 550px;
-    height: 250px;
-
-    position: relative;
-
-    padding: 35px 0 0 40px;
-
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
-
-    background: #232222;
-
-    .randomchar-title{
-        max-width: 374px;
-
-        font-family: 'Roboto Condensed';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 32px;
-        color: #FFFFFF;
-
-        & p:last-child{
-            width: 200px;
+            .randomchar-title{
+                max-width: 374px;
+                font-family: 'Roboto Condensed';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 32px;
+                color: #FFFFFF;
+                & p:last-child{
+                    width: 200px;
+                }
+            }
+            .button__main{
+                position: absolute;
+                left: 40px;
+                bottom: 30px;
+            }
+            .randomchar-decoration{
+                position: absolute;
+                right: -30px;
+                bottom: 0;
+            }
+            .mrt-30{
+                width: 250px;
+                margin-top: 30px;
+            }
         }
     }
-
-    .button__main{
-        position: absolute;
-        left: 40px;
-        bottom: 30px;
-    }
-}
-
-.randomchar-decoration{
-    position: absolute;
-    right: -30px;
-    bottom: 0;
 }
 
 
-.mrt-30{
-    width: 250px;
-    margin-top: 30px;
-}
+
+
+
+
+
 

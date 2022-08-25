@@ -1,67 +1,40 @@
 import './RandomChar.scss'
 import '../../style/button.scss'
 
-import MarvelService from '../../services/MarvelServices'
+import useMarvelService from '../../services/MarvelServices'
 import Spinner from '../Spinner/Spinner'
 import Error from '../Error/Error'
 
 import decor from '../../resources/img/mjolnir.png'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 
 function RandomChar() {
 
-    /* state = {
-        char:{},
-        loading: false,
-        error: false,
-    } */
-
     const [char, setChar] = useState({})
-    const [loading, setLoading] = useState({loading: false, error: false})
+    const {loading, error, getOneCharacter, clearError} = useMarvelService()
 
-    const marvelservice = new MarvelService 
+    const onUpperChar = () => {
+        clearError()
+        const randomId = Math.round(Math.random() * (1011400 - 1011000) + 1011000)
+        getOneCharacter(randomId)
+        .then(onCharLoaded)
+    }
 
     const onCharLoaded = (char) => {
         setChar(char)
-        setLoading({loading: false, error: false})
-    }
-
-    const onLoading = () => {
-        setLoading({loading: true, error: false})
-    }
-
-    const onError = () => {
-        setLoading({loading: false, error: true})
-        console.log('I am the ERROR')
-    }
-    
-    const onUpperChar = () => {
-        onLoading()
-        const randomId = Math.round(Math.random() * (1011400 - 1011000) + 1011000)
-        marvelservice
-            .getOneCharacter(randomId)
-            .then(onCharLoaded)
-            .catch(onError)
     }
 
     useEffect(() => {
         onUpperChar()
     }, [])
 
-    let block;
-    if (loading.error) {
-        block = <Error/>
-    } else if (loading.loading){
-        block = <Spinner/>
-    } else {
-        block = <RandomCharBlock char={char}/>
-    }
-
     return (
         <div className="randomchar-wrapper">
             <div className="randomchar">
                 <div className="randomchar-block">
-                    {block}
+                    {error ? <Error/> : null}
+                    {loading ? <Spinner/> : null}
+                    {!(error || loading) ? <RandomCharBlock char={char}/> : null}
                 </div>
                 <div className="randomchar-static">
                     <p className="randomchar-title">
@@ -78,7 +51,6 @@ function RandomChar() {
             </div>
         </div>
     )
-
 }
 
 export default RandomChar
