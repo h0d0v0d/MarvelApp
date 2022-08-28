@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { flushSync } from 'react-dom';
 import PropTypes from 'prop-types';
 
 import useMarvelService from '../../services/MarvelServices'
@@ -29,8 +28,8 @@ function HeroList ({onChangeMainCard}){
     const itemRefs = useRef([])
 
     function focusOnItem(id) {
-        itemRefs.current.forEach((item) => {item.classList.remove('active')})
-        itemRefs.current[id].classList.add('active')
+        itemRefs.current.forEach((item) => {item.classList.remove('activeCard')})
+        itemRefs.current[id].classList.add('activeCard')
     }
 
     useEffect(() => {
@@ -54,8 +53,6 @@ function HeroList ({onChangeMainCard}){
             </li> 
         )
     })
-
-    console.log('mainRenderEnd')
 
     return(
         <div className="hero-list">

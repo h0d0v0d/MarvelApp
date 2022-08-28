@@ -39,11 +39,11 @@
         color: #FFFFFF;
         word-wrap: break-word;
     }
-
+ 
     &:hover {
-        transition: 0.3s; 
+        transition: 0.25s; 
         box-shadow: 0 5px 20px #9F0013;
-        transform: translateY(-8px);
+        transform: translateY(-10px);
     }
 }
 
@@ -51,8 +51,8 @@
     background-color: green;
 }
 
-.active{
+.activeCard{
     transition: 0.3s; 
     box-shadow: 0 5px 20px #9F0013;
-    transform: translateY(-8px);
+    transform: translateY(-10px);
 }

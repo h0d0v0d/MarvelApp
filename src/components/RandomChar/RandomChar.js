@@ -16,7 +16,7 @@ function RandomChar() {
     const onUpperChar = () => {
         clearError()
         const randomId = Math.round(Math.random() * (1011400 - 1011000) + 1011000)
-        getOneCharacter(randomId)
+        getOneCharacter(randomId, false)
         .then(onCharLoaded)
     }
 

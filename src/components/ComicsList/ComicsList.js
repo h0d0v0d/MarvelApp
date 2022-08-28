@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import useMarvelService from "../../services/MarvelServices";
 
 import Spinner from "../Spinner/Spinner";
@@ -9,7 +11,7 @@ import './ComicsList.scss'
 const ComicsList = () => {
 
     const [comics, setComics] = useState([])
-    const [offset, setOffset] = useState(210)
+    const [offset, setOffset] = useState(100)
 
     const {loading, itemLoading, error, getAllComics} = useMarvelService()
 
@@ -28,18 +30,20 @@ const ComicsList = () => {
     }, [])
 
     const cards = comics.map((item, i) => {
-        const {title, price, thumbnail} = item
+        const {title, price, thumbnail, id} = item
         return (
             <li className="comics-card" key={i}>
-                <div className="card-img-wrapper">
-                    <img src={thumbnail} alt="" className="card-img" />
-                </div>
-                <p className="name">
-                {title}
-                </p>
-                <p className="price">
-                    {price ? price : 3}
-                </p>
+                <Link to={`/comics/${id}`}>
+                    <div className="card-img-wrapper"> 
+                        <img src={thumbnail} alt="" className="card-img" />
+                    </div>
+                    <p className="name">
+                    {title}
+                    </p>
+                    <p className="price">
+                        {price ? price : 3}
+                    </p>
+                </Link>
             </li>
         )
     })

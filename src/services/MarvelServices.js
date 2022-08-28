@@ -12,17 +12,30 @@ const useMarvelService = () => {
         return res.data.results.map(_transform)
     };
 
-    const getOneCharacter = async (id) => {
-        const res = await request(`${_apiBase}characters/${id}?${_apiKey}`)
-        return _transform(res.data.results[0])
+    const getOneCharacter = async (id, comics) => {
+        const char = await request(`${_apiBase}characters/${id}?${_apiKey}`)
+        if (comics) {
+            const comics = await request(`${_apiBase}/characters/${id}/comics?${_apiKey}`)
+            return _transform(
+                char.data.results[0],
+                comics.data.results
+            )
+        } else {
+            return _transform(char.data.results[0],)
+        }
     };
 
     const getAllComics = async (offset = _offsetBase) => {
         const res = await request(`${_apiBase}comics?limit=8&offset=${offset}&${_apiKey}`)
-        return comicsTransform(res.data.results)
+        return res.data.results.map(_comicsTransform)
     }
 
-    const _transform = (char) => {
+    const getOneComics = async (id) => {
+        const res = await request(`${_apiBase}comics/${id}?${_apiKey}`)
+        return _comicsTransform(res.data.results[0])
+    }
+
+    const _transform = (char, comicslist) => {
         return {
             id: char.id,
             name: char.name,
@@ -30,21 +43,28 @@ const useMarvelService = () => {
             thumbnail: `${char.thumbnail.path}.${char.thumbnail.extension}`,
             homepage: char.urls[0].url,
             wiki: char.urls[1].url, 
-            comicsList : char.comics.items
+            comicsList : typeof(comicslist) === 'object' ?
+            comicslist.map((item) => {
+                return {
+                    id: item.id,
+                    title: item.title
+                }
+            })
+            : null
         }
     }
 
-    const comicsTransform = (comics) => {
-        return comics.map((oneComics, i) => {
-            return (
-                {
-                    id: oneComics.id,
-                    title: oneComics.title,
-                    thumbnail: `${oneComics.thumbnail.path}.${oneComics.thumbnail.extension}`,
-                    price: oneComics.prices[0].price
-                }
-            )
-        })
+    const _comicsTransform = (comic) => {
+        return (
+            {
+                id: comic.id,
+                title: comic.title,
+                description: comic.description,
+                thumbnail: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
+                price: comic.prices[0].price,
+                pageCount: `${comic.pageCount} pages`
+            }
+        )
     }
 
     return {
@@ -54,13 +74,12 @@ const useMarvelService = () => {
         clearError,
         getAllCharacters, 
         getOneCharacter,
-        getAllComics
+        getAllComics,
+        getOneComics
     }
 };
 
 export default useMarvelService;
-
-
 
 
 

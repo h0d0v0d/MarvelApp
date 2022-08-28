@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { NavLink } from "react-router-dom";
 import PropTypes from 'prop-types';
+
 
 import useMarvelService from "../../services/MarvelServices";
 import Error from "../Error/Error";
@@ -11,16 +13,17 @@ import './MainCard.scss'
 function MainCard ({mainCardId}){
 
     const [char, setChar] = useState({})
+    /* const [comicsList, setComicsList] = useState([]) */
     const [skeleton, setSkeleton] = useState(true)
     
-    const {loading, error, getOneCharacter} = useMarvelService()
+    const {loading, error, getOneCharacter, getComicsListByCharId} = useMarvelService()
 
     const getChar = () => {
         if (mainCardId === null) {
             return
         }
         setSkeleton(false)
-        getOneCharacter(mainCardId)
+        getOneCharacter(mainCardId, true)
         .then(updateChar)
         .catch(onError)
     }
@@ -58,7 +61,7 @@ function View({char}) {
     return (
         <>
             <div className="card-description-face">
-                <div className="description-face-img">
+                <div className="description-face-img" >
                     <img src={thumbnail} alt="face" />
                 </div>
                 <div className="description-face-name">
@@ -75,11 +78,14 @@ function View({char}) {
             <p className="appearances">Comics:</p>
                 {
                     comicsList.map((item, i) => { 
-                        if (i >= 8) {
-                            return
+                        const {id, title} = item
+                        if (i >= 15) {
+                            return 
                         }
-                        return <li className="appearances-item" key={i}>
-                                    {item.name}
+                        return <li key={id}>
+                                    <NavLink className="appearances-item" to={`/comics/${id}`}>
+                                        {title}
+                                    </NavLink>
                                </li>
                     })
                 }
