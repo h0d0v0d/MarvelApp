@@ -18,26 +18,21 @@
             background: #FFFFFF;
             box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
 
-            .randomchar-img {
+            .randomchar__img {
                 max-width: 180px;
                 max-height: 180px;
                 margin-right: 30px;
             }
-            .randomchar-name{
+            .randomchar__name{
                 margin-bottom: 10px;
-                font-family: 'Roboto Condensed';
-                font-style: normal;
                 font-weight: 700;
                 font-size: 22px;
                 line-height: 26px;
                 color: #000000;
             }
-            .randomchar-descr{
+            .randomchar__descr{
                 margin-bottom: 16px ;
                 box-sizing:content-box;
-                font-family: 'Roboto Condensed';
-                font-style: normal;
-                font-weight: 400;
                 font-size: 14px;
                 line-height: 18px;
                 color: black;
@@ -62,10 +57,8 @@
             box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
             background: #232222;
 
-            .randomchar-title{
+            .randomchar__title{
                 max-width: 374px;
-                font-family: 'Roboto Condensed';
-                font-style: normal;
                 font-weight: 700;
                 font-size: 24px;
                 line-height: 32px;
@@ -79,7 +72,7 @@
                 left: 40px;
                 bottom: 30px;
             }
-            .randomchar-decoration{
+            .randomchar__decoration{
                 position: absolute;
                 right: -30px;
                 bottom: 0;

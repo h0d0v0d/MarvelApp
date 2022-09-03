@@ -41,7 +41,7 @@ const SingleComics = () => {
 export default SingleComics
 
 const View = ({comic}) => {
-    const {id, title, description, thumbnail, price, pageCount} = comic
+    const {title, description, thumbnail, price, pageCount} = comic
 
     return (
         <>

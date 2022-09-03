@@ -4,21 +4,21 @@ import './Header.scss'
 
 function Header (){
     return (
-        <div className="head-wrapper">   
-            <Link to='/' className='head-link' >
+        <div className="header-wrapper">    
+            <Link to='/' className='header__link' >
                 <h2>
                     <span className='red-color'>Marvel</span> information portal
                 </h2>
             </Link>
-            <nav className="head-navbar">
+            <nav className="header-navbar">
                 <ul>
                     <li><NavLink to='/' 
                                  end
-                                 className={({isActive}) => isActive ? 'active-navbutton' : 'navbutton'}
+                                 className={({isActive}) => isActive ? 'active__navbutton' : 'navbutton'}
                                  >Сharacters</NavLink></li>
                     /
                     <li><NavLink to='/comics' 
-                                 className={({isActive}) => isActive ? 'active-navbutton' : 'navbutton'}
+                                 className={({isActive}) => isActive ? 'active__navbutton' : 'navbutton'}
                                  >Сomics</NavLink></li>
                 </ul>
             </nav>

@@ -13,10 +13,9 @@ import './MainCard.scss'
 function MainCard ({mainCardId}){
 
     const [char, setChar] = useState({})
-    /* const [comicsList, setComicsList] = useState([]) */
     const [skeleton, setSkeleton] = useState(true)
     
-    const {loading, error, getOneCharacter, getComicsListByCharId} = useMarvelService()
+    const {loading, error, getOneCharacter} = useMarvelService()
 
     const getChar = () => {
         if (mainCardId === null) {
@@ -82,11 +81,11 @@ function View({char}) {
                         if (i >= 15) {
                             return 
                         }
-                        return <li key={id}>
+                        return <p key={id}>
                                     <NavLink className="appearances-item" to={`/comics/${id}`}>
                                         {title}
                                     </NavLink>
-                               </li>
+                               </p>
                     })
                 }
                 {comicsList.length === 0 ? 'NO COMICS' : null}

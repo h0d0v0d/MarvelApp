@@ -7,6 +7,7 @@ import Spinner from "../Spinner/Spinner";
 import Error from "../Error/Error";
 
 import './ComicsList.scss'
+import '../../style/button.scss'
 
 const ComicsList = () => {
 
@@ -35,13 +36,13 @@ const ComicsList = () => {
             <li className="comics-card" key={i}>
                 <Link to={`/comics/${id}`}>
                     <div className="card-img-wrapper"> 
-                        <img src={thumbnail} alt="" className="card-img" />
+                        <img src={thumbnail} alt="" className="card__img" />
                     </div>
-                    <p className="name">
+                    <p className="card__name">
                     {title}
                     </p>
-                    <p className="price">
-                        {price ? price : 3}
+                    <p className="card__price">
+                        {price ? price : 'Price not found'}
                     </p>
                 </Link>
             </li>
@@ -58,11 +59,9 @@ const ComicsList = () => {
             <button className="button button__long button__main" 
                     onClick={getData} 
                     disabled={itemLoading}>
-                <div className="inner">
-                    Load more 
-                </div>
+                <div className="inner">Load more</div>
             </button>
-        </div>
+        </div> 
     )
 }
 

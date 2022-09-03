@@ -1,9 +1,9 @@
-.head-wrapper{
+.header-wrapper{
     height: 37px;
     max-width: 1100px;
     margin: 50px auto;
     display: flex; 
-    .head-link{
+    .header__link{
         font-family: 'Roboto Condensed';
         font-style: normal;
         font-weight: 700;
@@ -15,7 +15,7 @@
             color: #9F0013;
         }
     }
-    .head-navbar{
+    .header-navbar{
         margin: 0 0 0 auto;
         ul{
             display: flex;;
@@ -30,7 +30,7 @@
         .navbutton{
             color: black;
         }
-        .active-navbutton{
+        .active__navbutton{
             color: #9F0013;
         }
     }

@@ -7,7 +7,7 @@ const ComicsBanner = () => {
     return (
         <div className="coimcs-banner">
             <img src={avengers} alt="avengers" className='avengers'/>
-            <div className="comics-banner-title">
+            <div className="comics-banner__title">
                 <p>New comics every week!</p>
                 <p>Stay tuned!</p>
             </div>

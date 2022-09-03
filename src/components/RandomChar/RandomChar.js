@@ -6,7 +6,7 @@ import Spinner from '../Spinner/Spinner'
 import Error from '../Error/Error'
 
 import decor from '../../resources/img/mjolnir.png'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState} from 'react'
 
 function RandomChar() {
 
@@ -37,16 +37,16 @@ function RandomChar() {
                     {!(error || loading) ? <RandomCharBlock char={char}/> : null}
                 </div>
                 <div className="randomchar-static">
-                    <p className="randomchar-title">
+                    <p className="randomchar__title">
                         Random character for today!!
                         <br/>
                         Do you want to get to know him better?
                     </p>
-                    <p className="randomchar-title mrt-30">Or choose another one</p>
+                    <p className="randomchar__title mrt-30">Or choose another one</p>
                     <button href="" className="button button__main" onClick={onUpperChar} >
                             <div className="inner">TRY IT</div>
                     </button>
-                    <img src={decor} alt="mjolnir" className="randomchar-decoration" />
+                    <img src={decor} alt="mjolnir" className="randomchar__decoration" />
                 </div>
             </div>
         </div>
@@ -59,14 +59,18 @@ function RandomCharBlock({char}) {
     const {thumbnail, name, description, wiki, homepage} = char
     return (
         <>
-            <img src={thumbnail} alt="thor" className='randomchar-img' />
+            <img src={thumbnail} alt="thor" className='randomchar__img' />
             <div className="randomchar-info">
-                <p className="randomchar-name">{name}</p>
-                <p className="randomchar-descr">{description}</p>
-                <a href={homepage} className="button button__main">
+                <p className="randomchar__name">{name}</p>
+                <p className="randomchar__descr">{description ? description : 'NO DESCRIPTION'}</p>
+                <a href={homepage} 
+                   target='_blank' 
+                   className="button button__main">
                     <div className="inner">HOMEPAGE</div>
                 </a>
-                <a href={wiki} className="button button__secondary">
+                <a href={wiki} 
+                   target='_blank' 
+                   className="button button__secondary">
                     <div className="inner">WIKI</div>
                 </a>
             </div>

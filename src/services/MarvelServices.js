@@ -21,7 +21,7 @@ const useMarvelService = () => {
                 comics.data.results
             )
         } else {
-            return _transform(char.data.results[0],)
+            return _transform(char.data.results[0])
         }
     };
 
@@ -44,13 +44,12 @@ const useMarvelService = () => {
             homepage: char.urls[0].url,
             wiki: char.urls[1].url, 
             comicsList : typeof(comicslist) === 'object' ?
-            comicslist.map((item) => {
-                return {
-                    id: item.id,
-                    title: item.title
-                }
-            })
-            : null
+                comicslist.map((item) => {
+                    return {
+                        id: item.id,
+                        title: item.title
+                    }
+                }) : null
         }
     }
 

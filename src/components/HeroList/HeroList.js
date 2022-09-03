@@ -28,8 +28,8 @@ function HeroList ({onChangeMainCard}){
     const itemRefs = useRef([])
 
     function focusOnItem(id) {
-        itemRefs.current.forEach((item) => {item.classList.remove('activeCard')})
-        itemRefs.current[id].classList.add('activeCard')
+        itemRefs.current.forEach((item) => {item.classList.remove('active-card')})
+        itemRefs.current[id].classList.add('active-card')
     }
 
     useEffect(() => {
@@ -77,5 +77,3 @@ export default HeroList
 HeroList.propTypes = {
     onChangeMainCard: PropTypes.func
 }
-
-

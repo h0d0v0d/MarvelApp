@@ -4,8 +4,6 @@ import RandomChar from "../RandomChar";
 import HeroList from "../HeroList/HeroList";
 import MainCard from "../MainCard/MainCard";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
-
-import decorImg from '../../resources/img/vision.png'
  
 const MainPage = () => { 
 
@@ -23,7 +21,6 @@ const MainPage = () => {
                 <ErrorBoundary> 
                     <MainCard mainCardId={mainCardId}/>
                 </ErrorBoundary>
-                <img src={decorImg} alt="" className="main-decor-img" />
             </div>
         </>
     )
